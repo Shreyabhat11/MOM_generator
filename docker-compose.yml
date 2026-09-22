@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - CORS_ORIGINS=http://localhost:5500,http://localhost:8080
+    volumes:
+      - mom_storage:/tmp/mom_generator
+
+  frontend:
+    image: python:3.12-slim
+    working_dir: /site
+    volumes:
+      - ./frontend:/site
+    ports:
+      - "8080:8080"
+    command: ["python", "-m", "http.server", "8080"]
+    depends_on:
+      - backend
+
+volumes:
+  mom_storage:
