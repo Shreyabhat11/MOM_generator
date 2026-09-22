@@ -1,0 +1,8 @@
+streamlit
+pypdf
+opencv-python-headless
+python-docx
+pillow
+python-dotenv
+pytessaract
+google-genai
